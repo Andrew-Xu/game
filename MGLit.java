@@ -17,9 +17,9 @@ public class MGLit extends MiniGame
 		for (int i = 0; i < size; ++i)
 		{
 			asciiCount.add((int)(Math.random() * 93) + 33);
-			text = "" + String.valueOf(Character.toChars(asciiCount.get(i)));
-			System.out.print(text);
+			text += "" + String.valueOf(Character.toChars(asciiCount.get(i)));
 		}
+		System.out.print(text);
 		return text;
 	}
 	public void input()
