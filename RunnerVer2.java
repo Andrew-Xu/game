@@ -14,6 +14,9 @@ public class Runner
         GameCanvas great = new GameCanvas("memes");
         theGameWindow.add(great);
         great.runAnimation();
+        
+        minigames.MGLit test = new MGLit();
+        test.randTextGen(100); // test for MGLit
     }
 }
 /*TurtleProgram tp = new TurtleProgram();
