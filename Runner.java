@@ -8,15 +8,15 @@ public class Runner
 	private static GameWindow theGameWindow;
     public static void main( String[] args )
     {
-    	
+    	minigames.MGLit test = new MGLit();
+        String s = test.randTextGen(100);     
         theGameWindow = new GameWindow();
-        System.out.println("ayy lmao");
-        GameCanvas great = new GameCanvas("memes");
+        System.out.println("\n" + "ayy lmao");
+        GameCanvas great = new GameCanvas("memes",s);
         theGameWindow.add(great);
         great.runAnimation();
         
-        minigames.MGLit test = new MGLit();
-        test.randTextGen(100); // test for MGLit
+         // test for MGLit
     }
 }
 /*TurtleProgram tp = new TurtleProgram();
