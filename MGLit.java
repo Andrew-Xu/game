@@ -20,6 +20,10 @@ public class MGLit extends MiniGame
 		System.out.print(text);
 		return text;
 	}
+	public String getText()
+	{
+		return text;
+	}
 	public int updateGrade(int score)
 	{
 		return score/20;
