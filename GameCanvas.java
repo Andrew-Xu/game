@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -38,15 +39,18 @@ public class GameCanvas extends JPanel
 	{
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(Color.RED);
-		g2d.fillOval(0, 0, 30, 30);
+		/*g2d.fillOval(0, 0, 30, 30);
 		g2d.drawOval(0+addX, 50+addY, 30, 30);		
 		g2d.fillRect(50, 0, 30, 30);
-		g2d.drawRect(50, 50, 30, 30);
-		g.drawString(display, 25, 25);
+		g2d.drawRect(50, 50, 30, 30);*/
+        int fontSize = 20;
+        Font f = new Font("Comic Sans MS", Font.ITALIC, fontSize);
+        g2d.setFont(f);
+		g2d.drawString(display, 25, 25);
 	}
 	public void runAnimation()
 	{
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 6; i++)
 		{
 			try{Thread.sleep(20);}
 			catch(InterruptedException ex) {}
