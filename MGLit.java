@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MGLit extends MiniGame
 {
-	String text;
+	String text = "";
 	public MGLit()
 	{
 		score = 0;
@@ -23,6 +23,12 @@ public class MGLit extends MiniGame
 	public String getText()
 	{
 		return text;
+	}
+	public boolean checkText(String userInput)
+	{
+		if(userInput.equals(text))
+			return true;
+		return false;
 	}
 	public int updateGrade(int score)
 	{
