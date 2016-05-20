@@ -1,4 +1,5 @@
 package gui;
+
 import minigames.*;
 import senioritis.*;
 import subjects.*;
@@ -9,7 +10,7 @@ public class Runner
     public static void main( String[] args )
     {
     	minigames.MGLit test = new MGLit();
-        String s = test.randTextGen(100);     
+        String s = test.randTextGen(5);     
         theGameWindow = new GameWindow();
         System.out.println("\n" + "ayy lmao");
         GameCanvas great = new GameCanvas("memes",s);
@@ -18,8 +19,15 @@ public class Runner
         
         UserInput uIn = new UserInput();
         uIn.receiveInput();
-        uIn.getUserInput();
-         // test for MGLit
+        if (test.checkText(uIn.getUserInput()))
+        {
+        	System.out.println("Congrats fam u can type 5 chars correctly.");
+            System.out.println("Your score on lit test out of 5 was: " + test.updateGrade(100));
+        }
+        else
+        	System.out.println("I know I'm from norcal but I have some advice. Quit! QUIIIIIT!");
+        // test for MGLit + UserInput
+
     }
 }
 /*TurtleProgram tp = new TurtleProgram();
