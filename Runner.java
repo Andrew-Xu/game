@@ -13,6 +13,7 @@ public class Runner
         System.out.println("ayy lmao");
         GameCanvas great = new GameCanvas("memes");
         theGameWindow.add(great);
+        great.runAnimation();
         
         minigames.MGLit test = new MGLit();
         test.randTextGen(100); // test for MGLit
