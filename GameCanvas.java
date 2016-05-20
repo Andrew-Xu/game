@@ -23,12 +23,10 @@ public class GameCanvas extends JPanel
 	public int addY = 0;
 	public String addDisplay = "";
 	public String display = "";
-
 	
 	/*BufferedImage myPicture = ImageIO.read(new File("path-to-file"));
 	JLabel picLabel = new JLabel(new ImageIcon(myPicture));
 	add(picLabel);*/
-	
 
 	public GameCanvas(String name, String input)
 	{
@@ -36,7 +34,6 @@ public class GameCanvas extends JPanel
 		System.out.println("Name: " + myName);
 		addDisplay = input;
 	}
-	
 	public void paint(Graphics g)
 	{
 		Graphics2D g2d = (Graphics2D) g;
@@ -46,18 +43,12 @@ public class GameCanvas extends JPanel
 		g2d.fillRect(50, 0, 30, 30);
 		g2d.drawRect(50, 50, 30, 30);
 		g.drawString(display, 25, 25);
-
 	}
-	
 	public void runAnimation()
 	{
-
-		for (int i = 0; i < 120; i++)
+		for (int i = 0; i < 5; i++)
 		{
-			try
-			{
-				Thread.sleep(20);
-			}
+			try{Thread.sleep(20);}
 			catch(InterruptedException ex) {}
 			if (i % 2 == 0)
 			{
@@ -72,7 +63,6 @@ public class GameCanvas extends JPanel
 			display += addDisplay.substring(i,i+1);
 			//display += "wow";
 			repaint();
-
 		}
 	}
 }
