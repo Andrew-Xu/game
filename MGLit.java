@@ -10,18 +10,17 @@ public class MGLit extends MiniGame
 	{
 		score = 0;
 	}
-	public ArrayList<String> randTextGen(int size) //ASCII 33 to 126
+	public String randTextGen(int size) //ASCII 33 to 126
 	{
 		ArrayList<Integer> asciiCount = new ArrayList<Integer>(size);
-		ArrayList<String> randText = new ArrayList<String>(size);
+		String text = "";
 		for (int i = 0; i < size; ++i)
 		{
 			asciiCount.add((int)(Math.random() * 93) + 33);
-			String text = "" + String.valueOf(Character.toChars(asciiCount.get(i)));
-			randText.add(text);
+			text = "" + String.valueOf(Character.toChars(asciiCount.get(i)));
 			System.out.print(text);
 		}
-		return randText;
+		return text;
 	}
 	public void input()
 	{
