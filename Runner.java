@@ -16,6 +16,9 @@ public class Runner
         theGameWindow.add(great);
         great.runAnimation();
         
+        UserInput uIn = new UserInput();
+        uIn.receiveInput();
+        uIn.getUserInput();
          // test for MGLit
     }
 }
