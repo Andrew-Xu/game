@@ -1,11 +1,10 @@
 package minigames;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MGLit extends MiniGame
 {
-	String userInput;
+	String text;
 	public MGLit()
 	{
 		score = 0;
@@ -13,7 +12,6 @@ public class MGLit extends MiniGame
 	public String randTextGen(int size) //ASCII 33 to 126
 	{
 		ArrayList<Integer> asciiCount = new ArrayList<Integer>(size);
-		String text = "";
 		for (int i = 0; i < size; ++i)
 		{
 			asciiCount.add((int)(Math.random() * 93) + 33);
@@ -21,11 +19,6 @@ public class MGLit extends MiniGame
 		}
 		System.out.print(text);
 		return text;
-	}
-	public void input()
-	{
-		Scanner in =  new Scanner(System.in);
-		userInput += in.next();
 	}
 	public int updateGrade(int score)
 	{
