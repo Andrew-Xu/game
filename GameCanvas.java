@@ -21,8 +21,8 @@ public class GameCanvas extends JPanel
 	public String myName;
 	public int addX = 0;
 	public int addY = 0;
+	public String addDisplay = "";
 	public String display = "";
-	public ArrayList<String> dank = new ArrayList<String>();
 
 	
 	/*BufferedImage myPicture = ImageIO.read(new File("path-to-file"));
@@ -30,11 +30,11 @@ public class GameCanvas extends JPanel
 	add(picLabel);*/
 	
 
-	public GameCanvas(String name)//, ArrayList<String> input)
+	public GameCanvas(String name, String input)
 	{
 		myName = name;
 		System.out.println("Name: " + myName);
-		//dank = input;
+		addDisplay = input;
 	}
 	
 	public void paint(Graphics g)
@@ -52,7 +52,7 @@ public class GameCanvas extends JPanel
 	public void runAnimation()
 	{
 
-		for (int i = 0; i < 40; i++)
+		for (int i = 0; i < 120; i++)
 		{
 			try
 			{
@@ -69,8 +69,8 @@ public class GameCanvas extends JPanel
 				addY -= 30;
 				addX -= 20;
 			}
-			//String input = dank.get(i);
-			//display += input;
+			display += addDisplay.substring(i,i+1);
+			//display += "wow";
 			repaint();
 
 		}
