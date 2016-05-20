@@ -18,8 +18,7 @@ public class UserInput
 	
 	public String getUserInput()
 	{
-		System.out.println("this was your output right fam:" + "\n");
+		System.out.println("this was your output right fam: " + received + "\n");
 		return received;
-	}
-	
+	}	
 }
