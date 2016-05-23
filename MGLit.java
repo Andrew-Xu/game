@@ -4,13 +4,19 @@ import java.util.ArrayList;
 
 public class MGLit extends MiniGame
 {
-	String text = "";
+	String text;
+	int size;
+	double startTime, endTime, totalTime;
 	public MGLit()
 	{
 		score = 0;
+		text = "";
+		startTime = System.currentTimeMillis();
+		endTime = totalTime = 0;
 	}
-	public String randTextGen(int size) //ASCII 33 to 126
+	public String randTextGen(int size2) //ASCII 33 to 126
 	{
+		size = size2;
 		ArrayList<Integer> asciiCount = new ArrayList<Integer>(size);
 		for (int i = 0; i < size; ++i)
 		{
@@ -20,18 +26,34 @@ public class MGLit extends MiniGame
 		System.out.print(text);
 		return text;
 	}
+	public boolean checkText(String userInput)
+	{
+		if(userInput.equals(text))
+		{
+			endTime = System.currentTimeMillis();
+			totalTime = endTime - startTime;
+			return true;
+		}
+		return false;
+	}
+	public double getTimeElapsed()
+	{
+		return totalTime/1000;
+	}
 	public String getText()
 	{
 		return text;
 	}
-	public boolean checkText(String userInput)
+	public int updateGrade(double score)
 	{
-		if(userInput.equals(text))
-			return true;
-		return false;
+		return (int)((score)*(size/getTimeElapsed()));
 	}
-	public int updateGrade(int score)
+	public String getResults(boolean t)
 	{
-		return score/20;
+		if (t)
+			return "Congrats fam u can type some chars correctly.\nYou took " + 
+				getTimeElapsed() + " seconds.\nYour score on lit test was: " + updateGrade(5);
+		return "Your score on lit test was: " + updateGrade(0) + "\n"
+				+ " I know I'm from norcal but I have some advice. Quit! QUIIIIIT!";
 	}
 }
