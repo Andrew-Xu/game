@@ -10,25 +10,17 @@ public class Runner
     public static void main( String[] args )
     {
     	minigames.MGLit test = new MGLit();
-        String s = test.randTextGen(6);
-        theGameWindow = new GameWindow();
+        String s = test.randTextGen(5);
+        theGameWindow = new GameWindow(s);
         System.out.println("\n" + "ayy lmao");
-        GameCanvas great = new GameCanvas("memes",s);
-        theGameWindow.add(great);
-        great.runAnimation();
+        theGameWindow.runAnimation();
+        //GameCanvas great = new GameCanvas("memes",s);
+        //theGameWindow.add(great);
+        //great.runAnimation();
         
         UserInput uIn = new UserInput();
         uIn.receiveInput();
-        if (test.checkText(uIn.getUserInput()))
-        {
-        	System.out.println("Congrats fam u can type some chars correctly.");
-            System.out.println("Your score on lit test out of 5 was: " + test.updateGrade(100));
-            System.out.println("You took " + test.getTimeElapsed()/1000 + " seconds.");
-        }
-        else
-        	System.out.println("I know I'm from norcal but I have some advice. Quit! QUIIIIIT!");
-        // test for MGLit + UserInput
-
+        System.out.println(test.getResults(test.checkText(uIn.getUserInput()))); // test for MGLit + UserInput
     }
 }
 /*TurtleProgram tp = new TurtleProgram();
