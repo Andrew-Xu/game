@@ -1,76 +1,141 @@
 package gui;
 
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GameWindow extends JFrame
+import minigames.MGLit;
+
+public class GameWindow extends Frame implements WindowListener, ActionListener
 {
-	
-	JTextField text = new JTextField("Press Return", 40);
-	JTextField noEdit = new JTextField("Press Return", 40);
-
-
-	
-	public GameWindow()
+    TextField textField = new TextField(35);
+    private boolean pressed = true;
+    public String display = "AHHHHHH";
+    public String addDisplay = "";
+    minigames.MGLit test = new MGLit();//MGLit Test
+    boolean introOver = false;
+    boolean textGameOver = false;
+    
+    public GameWindow()
 	{
-		
-		
 		super( "AYY LMAOO" );    
-		Container container = getContentPane();
-		container.setLayout(new FlowLayout());
-		text = new JTextField(10);
-		noEdit = new JTextField("Uneditable text field", 20);
-		jtfUneditableText.setEditable(false);
-		container.add(jtfText1);
-		container.add(jtfUneditableText);
-		handler = new TextHandler();
-		jtfText1.addActionListener(handler);
-		jtfUneditableText.addActionListener(handler);
-		setSize(325, 100);
-		setVisible(true);
-		
-		
 		initialize();
-		
-		
-		
 	}
-	
-	
-	
-	
+
 	private void initialize()
 	{
-		JPanel layoutPanel = new JPanel();
-		layoutPanel.setLayout( new FlowLayout() );
-		//JButton lmao = new JButton();
-		//layoutPanel.add( myTurtleController );
-	    
+		//JPanel layoutPanel = new JPanel();
+		//layoutPanel.setLayout( new FlowLayout() );
+		setSize(1600, 900);
+		setVisible(true);
+	}
+	
+	public void startIntroScreen()
+	{
+		try 
+		{
+			System.out.println("TextGame starting in 5 seconds");
+		    Thread.sleep(5000);
+		}
+		catch(InterruptedException ex)
+		{
+		    Thread.currentThread().interrupt();
+		}
+		isIntroOver();
+	}
+	
+	public boolean isIntroOver()
+	{
+		introOver = true;
+		return introOver;
+	}
 		
-		 text.addActionListener(new ActionListener() {
-			    public void actionPerformed(ActionEvent e) {
-			        System.out.println("Enter pressed");
-			    }
-			});
-		
-		
-		
-		
-		
-		getContentPane().add( layoutPanel );
-	        
-		setDefaultCloseOperation( EXIT_ON_CLOSE );
-		pack();
-		setSize( 800, 600 );
-		//setExtendedState(JFrame.MAXIMIZED_BOTH); 
+	public void startTextGame()
+	{
+		setLayout(new FlowLayout());
+		addWindowListener(this);
+		String s = test.randTextGen(5);
+		addDisplay = s;
+		TextField text = new TextField("Type the letters and then press Enter.", 60);
+		TextArea textL = new TextArea(s, 5, 100);
+	    add(text);
+		add(textField);
+	    add(textL);
+	    text.setEditable(false);
+	    textL.setEditable(false);
+            
+	    textField.addActionListener(new ActionListener() 
+	    {
+	    	public void actionPerformed(ActionEvent e) 
+			{
+	            if (pressed)
+	            {
+	            	System.out.println("You wrote this: " + textField.getText());
+	            	
+	               	textL.setText(textL.getText()+ "\n" + test.getResults(test.checkText(textField.getText())));
+	               	
+	               	try 
+	        		{
+	        			System.out.println("MapGame starting in 5 seconds");
+	        		    Thread.sleep(1000);
+	        		    dispose();
+	        		}
+	        		catch(InterruptedException ex)
+	        		{
+	        		    Thread.currentThread().interrupt();
+	        		}
+	        	}
+	    	}
+	    });
 		setLocationRelativeTo( null );
 		setVisible( true );
 	}
+	
+	public boolean isTextGameOver()
+	{ 
+		textGameOver = true;
+		return textGameOver; 
+	}
+	
+	public void startMapGame()
+	{
+		
+	}
+	
+	public void paint(Graphics g)
+	{
+		Graphics2D g2d = (Graphics2D) g;
+		if (!introOver)
+		{
+			g2d.setColor(Color.RED);
+			int fontSize = 20;
+			Font f = new Font("Comic Sans MS", Font.ITALIC, fontSize);
+			g2d.setFont(f);
+			g2d.drawString("TextGame starting in 5 seconds", 60, 60);
+		}
+		else if (!textGameOver)
+		{
+			
+		}
+	}
+	
+	
+	
+    public void actionPerformed(ActionEvent e) {}
+    public void windowClosing(WindowEvent e) 
+    {
+            dispose();
+            System.exit(0);
+    }
+
+    public void windowOpened(WindowEvent e) {}
+    public void windowActivated(WindowEvent e) {}
+    public void windowIconified(WindowEvent e) {}
+    public void windowDeiconified(WindowEvent e) {}
+    public void windowDeactivated(WindowEvent e) {}
+    public void windowClosed(WindowEvent e) {}
 }
