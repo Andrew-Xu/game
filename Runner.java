@@ -1,3 +1,4 @@
+
 package gui;
 
 import minigames.*;
@@ -9,18 +10,23 @@ public class Runner
 	private static GameWindow theGameWindow;
     public static void main( String[] args )
     {
-    	minigames.MGLit test = new MGLit();
-        String s = test.randTextGen(5);
-        theGameWindow = new GameWindow(s);
-        System.out.println("\n" + "ayy lmao");
-        theGameWindow.runAnimation();
-        //GameCanvas great = new GameCanvas("memes",s);
-        //theGameWindow.add(great);
-        //great.runAnimation();
+    	boolean check1 = false;
+    	boolean check2 = false;
+    	boolean check3 = false;
+    	theGameWindow = new GameWindow();
+    	theGameWindow.startIntroScreen();
+    	if (theGameWindow.isIntroOver())
+    	{
+    		theGameWindow.startTextGame();
+    	}
+    	if (theGameWindow.isTextGameOver())
+    	{
+    		
+    	}
+    	//theGameWindow.startMapGame();
+        System.out.println("\nayy lmao");
         
-        UserInput uIn = new UserInput();
-        uIn.receiveInput();
-        System.out.println(test.getResults(test.checkText(uIn.getUserInput()))); // test for MGLit + UserInput
+
     }
 }
 /*TurtleProgram tp = new TurtleProgram();
