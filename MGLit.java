@@ -51,9 +51,9 @@ public class MGLit extends MiniGame
 	public String getResults(boolean t)
 	{
 		if (t)
-			return "Congrats fam u can type some chars correctly.\nYou took " + 
-				getTimeElapsed() + " seconds.\nYour score on lit test was: " + updateGrade(5);
-		return "Your score on lit test was: " + updateGrade(0) + "\n"
-				+ " I know I'm from norcal but I have some advice. Quit! QUIIIIIT!";
+			return "You took " + 
+				getTimeElapsed() + " seconds." + "\n" + "Your score on the Literature test was: " + updateGrade(20);
+		return "Your score on the lit test was: " + updateGrade(0) + "\n"
+				+ "You aren't allowed to miss anything." + "\n" + "ANYTHING.";
 	}
 }
