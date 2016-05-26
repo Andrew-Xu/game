@@ -3,14 +3,17 @@ package gui;
 import java.awt.*;
 import java.awt.event.*;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import minigames.MGLit;
 
-public class GameWindow extends Frame implements WindowListener, ActionListener
+public class GameWindow extends JFrame implements WindowListener, ActionListener
 {
     TextField textField = new TextField(35);
     private boolean pressed = true;
@@ -23,7 +26,8 @@ public class GameWindow extends Frame implements WindowListener, ActionListener
     
     public GameWindow()
 	{
-		super( "AYY LMAOO" );    
+		super( "AYY LMAOO" );
+		
 		initialize();
 	}
 
@@ -47,7 +51,6 @@ public class GameWindow extends Frame implements WindowListener, ActionListener
 	    		isIntroOver();
 	    	}
 	    });
-
 	}
 	
 	public void isIntroOver()
@@ -55,6 +58,7 @@ public class GameWindow extends Frame implements WindowListener, ActionListener
 		dispose();
 		introOver = true;
 		this.remove(b);
+		JOptionPane.showMessageDialog(this, "Get ready to type!");
 		startTextGame();
 	}
 		
@@ -107,7 +111,7 @@ public class GameWindow extends Frame implements WindowListener, ActionListener
 	
 	public void startMapGame()
 	{
-		
+		this.add(new JLabel(new ImageIcon("magic.png")));
 	}
 	
 	public void paint(Graphics g)
@@ -130,8 +134,6 @@ public class GameWindow extends Frame implements WindowListener, ActionListener
 			g2d.drawString("MapGame starting in 5 seconds", 60, 60);
 		}
 	}
-	
-	
 	
     public void actionPerformed(ActionEvent e) {}
     public void windowClosing(WindowEvent e) 
