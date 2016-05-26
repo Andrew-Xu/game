@@ -19,6 +19,7 @@ public class GameWindow extends Frame implements WindowListener, ActionListener
     minigames.MGLit test = new MGLit();//MGLit Test
     boolean introOver = false;
     boolean textGameOver = false;
+    Button b;
     
     public GameWindow()
 	{
@@ -30,28 +31,31 @@ public class GameWindow extends Frame implements WindowListener, ActionListener
 	{
 		//JPanel layoutPanel = new JPanel();
 		//layoutPanel.setLayout( new FlowLayout() );
-		setSize(1600, 900);
+		setSize(800, 600);
 		setVisible(true);
 	}
 	
 	public void startIntroScreen()
 	{
-		try 
-		{
-			System.out.println("TextGame starting in 5 seconds");
-		    Thread.sleep(5000);
-		}
-		catch(InterruptedException ex)
-		{
-		    Thread.currentThread().interrupt();
-		}
-		isIntroOver();
+		b = new Button("Click me to begin!");
+		b.setFont(new Font("Arial", Font.PLAIN, 80));
+        add(b);
+        b.addActionListener(new ActionListener()
+	    {
+	    	public void actionPerformed(ActionEvent e) 
+			{
+	    		isIntroOver();
+	    	}
+	    });
+
 	}
 	
-	public boolean isIntroOver()
+	public void isIntroOver()
 	{
+		dispose();
 		introOver = true;
-		return introOver;
+		this.remove(b);
+		startTextGame();
 	}
 		
 	public void startTextGame()
@@ -81,7 +85,7 @@ public class GameWindow extends Frame implements WindowListener, ActionListener
 	               	try 
 	        		{
 	        			System.out.println("MapGame starting in 5 seconds");
-	        		    Thread.sleep(1000);
+	        		    Thread.sleep(5000);
 	        		    dispose();
 	        		}
 	        		catch(InterruptedException ex)
@@ -119,7 +123,11 @@ public class GameWindow extends Frame implements WindowListener, ActionListener
 		}
 		else if (!textGameOver)
 		{
-			
+			g2d.setColor(Color.BLACK);
+			int fontSize = 20;
+			Font f = new Font("Comic Sans MS", Font.ITALIC, fontSize);
+			g2d.setFont(f);
+			g2d.drawString("MapGame starting in 5 seconds", 60, 60);
 		}
 	}
 	
