@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -17,16 +17,17 @@ public class GameWindow extends JFrame implements WindowListener, ActionListener
 {
     TextField textField = new TextField(35);
     private boolean pressed = true;
-    public String display = "AHHHHHH";
+    public String endScore = "";
     public String addDisplay = "";
     minigames.MGLit test = new MGLit();//MGLit Test
     boolean introOver = false;
     boolean textGameOver = false;
+    public boolean moveOn = false;
     Button b;
     
     public GameWindow()
 	{
-		super( "AYY LMAOO" );
+		super( "Senioritis" );
 		
 		initialize();
 	}
@@ -48,7 +49,7 @@ public class GameWindow extends JFrame implements WindowListener, ActionListener
 	    {
 	    	public void actionPerformed(ActionEvent e) 
 			{
-	    		isIntroOver();
+	    		
 	    	}
 	    });
 	}
@@ -58,7 +59,7 @@ public class GameWindow extends JFrame implements WindowListener, ActionListener
 		dispose();
 		introOver = true;
 		this.remove(b);
-		JOptionPane.showMessageDialog(this, "Get ready to type!");
+		//JOptionPane.showMessageDialog(this, "Get ready to type!");
 		startTextGame();
 	}
 		
@@ -66,8 +67,7 @@ public class GameWindow extends JFrame implements WindowListener, ActionListener
 	{
 		setLayout(new FlowLayout());
 		addWindowListener(this);
-		String s = test.randTextGen(5);
-		addDisplay = s;
+		String s = "";
 		TextField text = new TextField("Type the letters and then press Enter.", 60);
 		TextArea textL = new TextArea(s, 5, 100);
 	    add(text);
@@ -75,6 +75,9 @@ public class GameWindow extends JFrame implements WindowListener, ActionListener
 	    add(textL);
 	    text.setEditable(false);
 	    textL.setEditable(false);
+    	s = test.randTextGen(20);
+    	textL.setText(s);
+   
             
 	    textField.addActionListener(new ActionListener() 
 	    {
@@ -84,13 +87,22 @@ public class GameWindow extends JFrame implements WindowListener, ActionListener
 	            {
 	            	System.out.println("You wrote this: " + textField.getText());
 	            	
-	               	textL.setText(textL.getText()+ "\n" + test.getResults(test.checkText(textField.getText())));
+	               	textL.setText("Calculating score...");
+	               	endScore = test.getResults(test.checkText(textField.getText()));
 	               	
 	               	try 
 	        		{
-	        			System.out.println("MapGame starting in 5 seconds");
-	        		    Thread.sleep(5000);
-	        		    dispose();
+	               		advance();
+	        			System.out.println("Will show results in 5 seconds");
+	        			remove(text);
+	        			remove(textField);
+	        		    remove(textL);
+	        			Thread.sleep(5000);
+	        			repaint();
+	        	
+	        		    
+	        		    
+	        		    
 	        		}
 	        		catch(InterruptedException ex)
 	        		{
@@ -101,6 +113,11 @@ public class GameWindow extends JFrame implements WindowListener, ActionListener
 	    });
 		setLocationRelativeTo( null );
 		setVisible( true );
+	}
+	
+	public boolean advance()
+	{
+		return moveOn;
 	}
 	
 	public boolean isTextGameOver()
@@ -117,22 +134,10 @@ public class GameWindow extends JFrame implements WindowListener, ActionListener
 	public void paint(Graphics g)
 	{
 		Graphics2D g2d = (Graphics2D) g;
-		if (!introOver)
-		{
-			g2d.setColor(Color.RED);
-			int fontSize = 20;
-			Font f = new Font("Comic Sans MS", Font.ITALIC, fontSize);
+			Font f = new Font("Arial", Font.PLAIN, 40);
 			g2d.setFont(f);
-			g2d.drawString("TextGame starting in 5 seconds", 60, 60);
-		}
-		else if (!textGameOver)
-		{
-			g2d.setColor(Color.BLACK);
-			int fontSize = 20;
-			Font f = new Font("Comic Sans MS", Font.ITALIC, fontSize);
-			g2d.setFont(f);
-			g2d.drawString("MapGame starting in 5 seconds", 60, 60);
-		}
+			g2d.drawString(endScore, 30, 170);
+		
 	}
 	
     public void actionPerformed(ActionEvent e) {}
