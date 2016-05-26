@@ -1,30 +1,67 @@
 package gui;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JOptionPane;
+
 import minigames.*;
 import senioritis.*;
 import subjects.*;
 
 public class Runner 
 {
-	private static GameWindow theGameWindow;
+	static Button b;
+	static boolean litFirst;
     public static void main( String[] args )
     {
+    	boolean yesnogo = false;
+    	GameWindow theGameWindow = new GameWindow();
+    	b = new Button("Click me to begin!");
+		b.setFont(new Font("Arial", Font.PLAIN, 80));
+        theGameWindow.add(b);
+        b.addActionListener(new ActionListener()
+	    {
+	    	public void actionPerformed(ActionEvent e) 
+			{
+	        	theGameWindow.startIntroScreen();
+	       	 	int reply = JOptionPane.showConfirmDialog(null, "Would you like to take the AP Literature test first?", "Pick your poison:", JOptionPane.YES_NO_OPTION);
+	            if (reply == JOptionPane.YES_OPTION)
+	            {
+	            	theGameWindow.remove(b);
+	           	 	theGameWindow.isIntroOver();
+	           	 	litFirst = true;
+	           	 	System.out.println("ok so lit");
+	            }
+	            else
+	            {
+	            	theGameWindow.remove(b);
+	            	theGameWindow.dispose();
+	            	GameCanvas game = new GameCanvas();
+	            	game.loop();
+	            	litFirst = false;
+	            }
+	    	}
+	    });
+        while(!yesnogo)
+        {
+          if(litFirst)
+          {
+              yesnogo = theGameWindow.advance();
+          }
+          else
+          {
+        	  
+          }
+          try 
+  		{	  Thread.sleep(4000); }
+  		catch(InterruptedException ex)
+  		{ Thread.currentThread().interrupt();}
 
-    	theGameWindow = new GameWindow();
-    	theGameWindow.startIntroScreen();
-        System.out.println("\nayy lmao");
+        }
+            System.out.println("ok so lit finished");
+
     	
-    	Map m = new Map(20, 10); //initialize floor
-    	Wall w = new Wall();
-    	w.initialize(m);
-		m.columnF(w.getLWall());
-		m.columnL(w.getRWall());
-		m.getMap()[0] = w.getCeiling();
-		m.getMap()[m.getY() - 1] = w.getFloor();
-		Player p = new Player(m.getY() - 2, 1);
-		m.getMap()[p.getX()][p.getY()] = p + "";
-		
-    	System.out.println("");
-    	System.out.println(m);
     }
 }
