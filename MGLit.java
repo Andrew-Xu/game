@@ -2,11 +2,14 @@ package minigames;
 
 import java.util.ArrayList;
 
-public class MGLit extends MiniGame
+import subjects.Subject;
+
+public class MGLit extends MiniGame implements Subject
 {
 	String text;
 	int size;
-	double startTime, endTime, totalTime;
+	double startTime, endTime, totalTime, extraTime;
+	double grade = 0;
 	public MGLit()
 	{
 		score = 0;
@@ -38,7 +41,11 @@ public class MGLit extends MiniGame
 	}
 	public double getTimeElapsed()
 	{
-		return totalTime/1000;
+		return (totalTime/1000) - 3 - (extraTime/1000);
+	}
+	public void setExtraTime(double time)
+	{
+		extraTime = time;
 	}
 	public String getText()
 	{
@@ -46,13 +53,23 @@ public class MGLit extends MiniGame
 	}
 	public int updateGrade(double score)
 	{
-		return (int)((score)*(size/getTimeElapsed()));
+		double fraction = size/getTimeElapsed();
+		if (fraction > 1)
+			fraction = 1;
+		return (int)(score * fraction);
+	}
+	public double getGrade()
+	{
+		return grade;
+	}
+	public void choice()
+	{
+		System.out.println("Lit game running.");
 	}
 	public String getResults(boolean t)
 	{
 		if (t)
-			return "You took " + 
-				getTimeElapsed() + " seconds." + "\n" + "Your score on the Literature test was: " + updateGrade(20);
+			return "You took " + getTimeElapsed() + " seconds." + "\n" + "Your score on the Literature test was: " + updateGrade(5);
 		return "Your score on the lit test was: " + updateGrade(0) + "\n"
 				+ "You aren't allowed to miss anything." + "\n" + "ANYTHING.";
 	}
