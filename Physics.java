@@ -2,7 +2,7 @@ package subjects;
 
 import java.util.ArrayList;
 
-public class Physics implements Subject
+public class Physics //implements Subject
 {
 	double grade;
 	
